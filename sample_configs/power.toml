@@ -1,0 +1,27 @@
+[title]
+name = "Power Settings"
+icon = "some-image-path.jpg"
+
+[[items]]
+name = "shut-down"
+text = "󰐥 Shut Down"
+command = "echo"
+args = ["Shutting Down..."]
+
+[[items]]
+name = "restart"
+text = "󰤁 Restart"
+command = "echo"
+args = ["Restarting..."]
+
+[[items]]
+name = "lock"
+text = " Lock Screen"
+command = "hyprlock"
+
+[[items]]
+name = "screen-saver"
+text = "󰹑 Screen Saver"
+command = "echo"
+args = ["Screen Saver..."]
+
