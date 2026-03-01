@@ -10,6 +10,8 @@ a system that already had an app launcher, I did not want to install `walker`.
 If you just want a simple `demnu` that can either be configured through a TOML file,
 or options passed in from stdin, then this is for you.
 
+![example](./images/gmenu-example.webp)
+
 **Note**: The font and styling are NOT concerns of `gmenu` - you can use your terminal
 combined with `hyprland` to change fonts, placing and sizing of the menu.
 
