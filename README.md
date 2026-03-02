@@ -64,3 +64,72 @@ Then just pass the config through `--config-file`:
 ```bash
 gmenu --config-file config.toml
 ```
+
+## Changing Appearance
+
+As this menu is simply a TUI, it doesn't have any functionality to change text and
+font sizing.
+
+However, you can achieve a different looks and feel with `hypr` combined with your
+terminal theme configurations.
+
+For example, here's the `hyprland` window rules to make the windows floating:
+
+```conf
+windowrule = match:class gmenu, float on, size 400 500, center on
+```
+
+Which I combine with the following `allacrity` theme settings:
+
+```toml
+general.import = [ "~/.config/alacritty/alacritty.toml" ]
+
+[font]
+size = 12
+```
+
+In summary, I just make the `gmenu` window centered-floating, then have a different
+`allacrity` theme which is the same as my usual one, only changing the font size.
+
+**Note** that you need to make sure you have the `gmenu` class as per the `hypr`
+window rules. Take a look at the comments in the following secions.
+
+
+### Running With the Toml Config and Better Look and Feel
+
+```bash
+alacritty \
+  --class gmenu \
+  --config-file=/home/matheus/.config/alacritty/alacritty-menu.toml \
+  -e /bin/bash -c '/home/matheus/.cargo/bin/gmenu --config-file /home/matheus/development/gmenu/sample_configs/power.toml'
+```
+
+Or whatever the equivalent is for your terminal emulator. You need the class!
+
+### Running With dmnu Mode
+
+Since the `gmenu` outputs the selection on `dmenu` mode, you can simply do something
+like
+
+
+```bash
+selection="$(echo "Option 1\nOption 2\nOption 3" | gmenu --dmenu --tile "My Title")"
+```
+
+Then the result will be stored in `selection` in your scripts.
+
+However, if you want the extra look and feel from `hypr` and your terminal
+emulator, you will need a wrapper script with something like the following:
+
+```bash
+OUTPUT_FILE=$(mktemp)
+alacritty ... -e /bin/bash -c 'gmenu ... > '"$OUTPUT_FILE"
+
+alacritty \
+  --class gmenu \
+  --config-file=/home/matheus/.config/alacritty/alacritty-menu.toml \
+  -e /bin/bash -c '/home/matheus/.cargo/bin/gmenu --config-file /home/matheus/development/gmenu/sample_configs/power.toml > '"$OUTPUT_FILE"
+
+selection=$(cat "$OUTPUT_FILE")
+rm -f "$OUTPUT_FILE"
+```
