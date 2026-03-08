@@ -33,4 +33,3 @@ pub fn items_from_str(lines: &[String]) -> Vec<MenuItem> {
         })
         .collect()
 }
-

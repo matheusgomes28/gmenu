@@ -1,5 +1,5 @@
 use std::{
-    io::{Stderr, Stdout, stdout},
+    io::Stderr,
     os::unix::process::CommandExt,
     process::{Command, Stdio},
 };
@@ -11,7 +11,14 @@ use crossterm::{
     terminal::{LeaveAlternateScreen, disable_raw_mode},
 };
 use ratatui::{
-    DefaultTerminal, Frame, Terminal, buffer::Buffer, layout::Rect, prelude::CrosstermBackend, style::Stylize, symbols::border, text::{Line, Text}, widgets::{Block, Paragraph, Widget}
+    Frame, Terminal,
+    buffer::Buffer,
+    layout::Rect,
+    prelude::CrosstermBackend,
+    style::Stylize,
+    symbols::border,
+    text::{Line, Text},
+    widgets::{Block, Paragraph, Widget},
 };
 
 use crate::models::MenuItem;

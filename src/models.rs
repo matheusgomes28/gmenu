@@ -4,8 +4,6 @@ use serde::Deserialize;
 pub struct Title {
     // Name and title for the menu
     pub name: String,
-    // Icon that appears on the menu
-    pub icon: String,
 }
 
 #[derive(Deserialize, Clone, Default, Debug)]

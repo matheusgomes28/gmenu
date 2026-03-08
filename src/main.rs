@@ -3,7 +3,10 @@ mod dmenu;
 mod models;
 
 use app::App;
-use crossterm::{execute, terminal::{EnterAlternateScreen, enable_raw_mode}};
+use crossterm::{
+    execute,
+    terminal::{EnterAlternateScreen, enable_raw_mode},
+};
 use models::MenuConfig;
 
 use anyhow::{Result, bail};
@@ -45,7 +48,6 @@ fn try_main(args: ProgramArgs) -> Result<()> {
         config.items = dmenu::items_from_str(&lines);
         config.title = models::Title {
             name: args.dmenu_mode.title.unwrap_or("dmenu".to_string()),
-            ..Default::default()
         };
     } else if let Some(config_path) = args.config_mode.config_file {
         let contents = std::fs::read_to_string(config_path)?;
